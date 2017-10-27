@@ -1,4 +1,4 @@
-package cn.nuct.bigdata.storm;
+package cn.nuct.bigdata.storm.wordcount;
 
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
@@ -12,11 +12,11 @@ public class WordCountTopologMain {
 
         //1、准备一个TopologyBuilder
         TopologyBuilder topologyBuilder = new TopologyBuilder();
-        topologyBuilder.setSpout("mySpout", new MySpout(), 2);
-        topologyBuilder.setBolt("mybolt1", new MySplitBolt(), 2).shuffleGrouping("mySpout");
-        topologyBuilder.setBolt("mybolt2", new MyCountBolt(), 4).fieldsGrouping("mybolt1", new Fields("word"));
+        topologyBuilder.setSpout("mySpout", new MySpout(), 1);
+        topologyBuilder.setBolt("mybolt1", new MySplitBolt(), 10).shuffleGrouping("mySpout");
+        topologyBuilder.setBolt("mybolt2", new MyCountBolt(), 2).fieldsGrouping("mybolt1", new Fields("word"));
 //        topologyBuilder.setBolt("mybolt2",new MyCountBolt(),4).shuffleGrouping("mybolt1");
-        //  config.setNumWorkers(2);
+//        //  config.setNumWorkers(2);
         /**
          * i
          * am
@@ -24,7 +24,6 @@ public class WordCountTopologMain {
          * love
          * hanmeimei
          */
-
 
         //2、创建一个configuration，用来指定当前topology 需要的worker的数量
         Config config = new Config();

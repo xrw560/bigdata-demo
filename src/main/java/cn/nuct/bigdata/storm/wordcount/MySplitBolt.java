@@ -1,9 +1,7 @@
-package cn.nuct.bigdata.storm;
+package cn.nuct.bigdata.storm.wordcount;
 
 import backtype.storm.task.OutputCollector;
 import backtype.storm.task.TopologyContext;
-import backtype.storm.topology.IBasicBolt;
-import backtype.storm.topology.IRichBolt;
 import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.topology.base.BaseRichBolt;
 import backtype.storm.tuple.Fields;
@@ -31,6 +29,6 @@ public class MySplitBolt extends BaseRichBolt {
     }
 
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("word", "num"));
+        declarer.declare(new Fields("word", "num"));//"word"->word,"num"->1
     }
 }
