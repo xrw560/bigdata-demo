@@ -28,6 +28,7 @@ public class WordCountTopologMain {
         //2、创建一个configuration，用来指定当前topology 需要的worker的数量
         Config config = new Config();
         config.setNumWorkers(2);
+        config.setDebug(true);
 
         //3、提交任务  -----两种模式 本地模式和集群模式
 //        StormSubmitter.submitTopology("mywordcount",config,topologyBuilder.createTopology());
